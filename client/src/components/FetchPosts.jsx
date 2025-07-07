@@ -22,7 +22,7 @@ const FetchPosts = () => {
   }
 
   return (
-    <>
+    <div className='bg-black/30 min-h-screen p-4 rounded-lg backdrop-blur-sm'>
     
 <form class="max-w-md mx-auto mt-4">   
     <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
@@ -41,16 +41,19 @@ const FetchPosts = () => {
       {posts.map((post, index) => {
         const title = post.data.title
         const imageUrl = post.data.preview?.images[0]?.source?.url?.replace(/&amp;/g, '&')
+        const comments = post.data.num_comments
+        const score = post.data.score
         
         return (
-          <div key={index} className='bg-gray-300 p-4 mt-8'>
-        <p>{title}</p>
+          <div key={index} className='bg-[#444444] rounded-lg p-4 mt-8'>
+        <p className='text-3xl font-extrabold leading-none tracking-tight text-white md:text-2xl'>{title}</p>
         {imageUrl && <img src={imageUrl} className='w-[100px]' />}
+        <p className='text-lg font-extrabold leading-none tracking-tight text-gray-300 md:text-md'>{score} points - {comments} comments</p>
         </div>
               )
           })}
     </div>
-    </>
+    </div>
   )
 }
 
